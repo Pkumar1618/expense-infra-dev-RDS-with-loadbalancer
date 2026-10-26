@@ -1,0 +1,22 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "6.52.0"
+    }
+  }
+
+  backend "s3" {
+    bucket         = "81-state-remote"
+    key            = "expense-dev-backend"
+    region         = "us-east-1"
+    dynamodb_table = "81.online"
+    encrypt        = true
+  }
+
+}
+
+provider "aws" {
+  # Configuration options
+  region = "us-east-1"
+}
